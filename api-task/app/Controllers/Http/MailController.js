@@ -58,14 +58,18 @@ class MailController {
     if (validation.fails()) {
       response.unprocessableEntity(validation.messages())
     } */
+    let body = request.all()
+    console.log('val', request.all(), 'val');
     console.log('probando');
-    /* await Mail.send('emails.welcome', (message) => {
+    await Mail.raw('emails.welcome', (message) => {
       message
-        .from('josnieldavidfb18@gmail.com')
-        .subject('Welcome to yardstick')
-    }) */
-
-    //return 'Registered successfully'
+        .to(`${body.email}`)
+        .from('josnielfermin@gmail.com')
+        .subject(`Email de ${ body.name } con estatus: ${body.category}`)
+        .text(`${body.description}`)
+    })
+    //response.send(true)
+    return 'Registered successfully'
   }
 
   /**
