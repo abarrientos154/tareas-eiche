@@ -58,15 +58,16 @@ class MailController {
     if (validation.fails()) {
       response.unprocessableEntity(validation.messages())
     } */
-    let body = request.all()
-    console.log('val', request.all(), 'val');
+    let data = request.only(['data'])
+    console.log('val', data.data, 'val');
     console.log('probando');
     await Mail.raw('emails.welcome', (message) => {
       message
-        .to(`${body.email}`)
+        .to(`${data.email}`)
         .from('josnielfermin@gmail.com')
-        .subject(`Email de ${ body.name } con estatus: ${body.category}`)
-        .text(`${body.description}`)
+        .subject(`Email de ${data.name} con estatus: ${data.category}`)
+        .text(`${data.description}`)
+        /* .attachData(`${body.files.file[0]}` ,`${body.files.file[0].name}`) */
     })
     //response.send(true)
     return 'Registered successfully'

@@ -10,13 +10,14 @@
         autogrow
         label="Descripción"
       />
-    <q-input
-          @input="val => { files = val }"
-          multiple
-          filled
-          type="file"
-          hint="Native file (multiple)"
-        />
+    <q-file
+      name="fileName"
+      v-model="files"
+      label="Pick files"
+      filled
+      multiple
+      style="max-width: 300px"
+    />
     <q-btn push color="primary" label="Enviar" @click="send(form)" />
   </div>
 </q-page>
@@ -35,9 +36,9 @@ export default {
         name: '',
         email: '',
         category: '',
-        description: '',
-        attach: ''
-      }
+        description: ''
+      },
+      files: []
     }
   },
   validations () {
@@ -59,8 +60,12 @@ export default {
         console.log(res)
       })
     },
-    send (message) {
-      this.$api.post('send', message).then((res) => {
+    send () {
+      var formData = new FormData()
+      formData.append('files', this.files)
+      formData.append('data', this.form)
+      console.log(formData)
+      this.$api.post('send', formData).then((res) => {
         console.log(res)
       })
     }
