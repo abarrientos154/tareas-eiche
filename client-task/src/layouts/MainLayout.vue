@@ -1,12 +1,18 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <div class="column q-mt-lg q-mb-lg items-center">
+    <q-tab-panels v-model="panel" animated class="shadow-2 rounded-borders">
+      <q-tab-panel name="Splash">
+        <splash @pasar="pasar" />
+      </q-tab-panel>
+
+      <q-tab-panel name="Index">
+        <div class="column q-mt-lg q-mb-lg items-center">
       <img
         class="q-mx-lg"
         alt="Quasar logo"
-        src="~assets/1.jpg"
-        height="350px"
-        width="350px"
+        src="~assets/logo_hacemos_tus_tareas_nueva_posicion.png"
+        height="238px"
+        width="400px"
       >
     <q-card dark bordered class="row q-mt-lg q-mb-lg justify-around bg-grey-3 q-mx-lg my-card">
       <div>
@@ -38,7 +44,7 @@
     </div> -->
       <img
         alt="Quasar logo"
-        src="~assets/1.jpg"
+        src="~assets/logo_hacemos_tus_tareas_nueva_posicion.png"
         height="150px"
         width="350px"
       >
@@ -46,16 +52,19 @@
     <q-page-container>
       <router-view />
     </q-page-container>
+      </q-tab-panel>
+    </q-tab-panels>
   </q-layout>
 </template>
 
 <script>
-
+import Splash from '../components/Splash.vue'
 export default {
   name: 'MainLayout',
-  components: {},
+  components: { Splash },
   data () {
     return {
+      panel: 'Splash',
       courses: [],
       slide: 'manage_search',
       options: []
@@ -66,6 +75,9 @@ export default {
     this.getOptions()
   },
   methods: {
+    pasar () {
+      this.panel = 'Index'
+    },
     async getCourses () {
       await this.$api.get('courses').then(res => {
         this.courses = res.data

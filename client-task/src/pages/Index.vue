@@ -1,34 +1,40 @@
 <template>
-<q-page class="column q-mx-lg" >
+<q-page>
+  <div class="animation-wrapper">
+        <div class="inner-animation-wrapper">
+          <div class="column q-mx-lg">
+            <q-form
+              @submit="onSubmit"
+            >
+              <q-input outlined v-model="form.name" label="Nombre" />
+              <q-input outlined v-model="form.email" label="Correo" />
+              <q-select outlined :options="options" v-model="form.category" label="Categoria" />
+              <q-input
+                v-model="form.description"
+                filled
+                autogrow
+                label="Descripción"
+              />
+              <q-file
+                name="filename"
+                v-model="files"
+                label="Adjuntar"
+                filled
+                style="max-width: 300px"
+              />
+              <q-btn
+                label="Enviar"
+                type="submit"
+                color="primary"
+                class="right q-pa-sm q-mt-sm"
+              />
+            </q-form>
+          </div>
+        </div>
+    </div>
   <div>
-    <q-form
-      @submit="onSubmit"
-    >
-      <q-input outlined v-model="form.name" label="Nombre" />
-      <q-input outlined v-model="form.email" label="Correo" />
-      <q-select outlined :options="options" v-model="form.category" label="Categoria" />
-      <q-input
-          v-model="form.description"
-          filled
-          autogrow
-          label="Descripción"
-        />
-      <q-file
-        name="filename"
-        v-model="files"
-        label="Pick files"
-        filled
-        multiple
-        style="max-width: 300px"
-      />
-    <q-btn
-            label="Guardar"
-            type="submit"
-            color="primary"
-            class="right q-pa-sm q-mt-sm"
-          />
-    </q-form>
-    <q-btn push color="primary" label="Enviar" @click="onSubmit" />
+
+    <!-- <q-btn push color="primary" label="Enviar" @click="onSubmit" /> -->
   </div>
 </q-page>
 </template>
@@ -86,3 +92,15 @@ export default {
   }
 }
 </script>
+<style lang="css">
+    .animation-wrapper {
+        height: 100vh;
+        background-color: #f0f0f0;
+    }
+    .inner-animation-wrapper {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+    }
+
+</style>
