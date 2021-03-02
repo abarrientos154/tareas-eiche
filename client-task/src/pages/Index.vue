@@ -72,9 +72,9 @@ export default {
     },
     onSubmit () {
       var formData = new FormData()
-      formData.append('files', this.files)
+      formData.append('files', this.files[0])
       formData.append('data', JSON.stringify(this.form))
-      console.log(formData)
+      console.log(formData, this.files)
       this.$api.post('send', formData, {
         headers: {
           'Content-Type': undefined

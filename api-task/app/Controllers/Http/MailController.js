@@ -3,6 +3,7 @@
 const { validate } = use("Validator")
 const Mail = use('Mail')
 const Helpers = use('Helpers')
+const path = require('path')
 /* const mkdirp = use('mkdirp')
 const fs = require('fs') */
 
@@ -62,7 +63,8 @@ class MailController {
       response.unprocessableEntity(validation.messages())
     } */
     let data = request.only(['data'])
-    let files = request.only(['files'])
+    let files = request.file('files')
+
     /* if (files) {
       await files.move(Helpers.appRoot('resources/views/emails'), {
         name: 'prueba',
@@ -73,6 +75,8 @@ class MailController {
     //let files = request.file('files')
     console.log('val', files, 'val');
     data = JSON.parse(data.data)
+    const filePath = `${path.resolve(`./tmp/uploads/`)}/${files.clientName}`
+    await files.move(Helpers.tmpPath('uploads'), { name: files.clientNam, overwrite: true })
     console.log('probando');
     await Mail.raw('emails.welcome', (message) => {
       message
@@ -80,7 +84,7 @@ class MailController {
         .from('josnielfermin@gmail.com')
         .subject(`Email de ${data.name} con estatus: ${data.category}`)
         .text(`${data.description}`)
-        .attach(Helpers.viewsPath('welcome.edge'))
+        .attach(filePath)
         /* .attachData(`${files}`, `prueba`) */
     })
     //response.send(true)
