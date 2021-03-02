@@ -2,13 +2,16 @@
 // const Mail = use("App/Models/Mail")
 const { validate } = use("Validator")
 const Mail = use('Mail')
+const Helpers = use('Helpers')
+/* const mkdirp = use('mkdirp')
+const fs = require('fs') */
 
-const formMailV = {
+/* const formMailV = {
   name: "required|string",
   email: "required|string",
   category: "required|string",
   descripción: "required|string"
-}
+} */
 
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
@@ -59,7 +62,17 @@ class MailController {
       response.unprocessableEntity(validation.messages())
     } */
     let data = request.only(['data'])
-    console.log('val', data.data, 'val');
+    let files = request.only(['files'])
+    /* if (files) {
+      await files.move(Helpers.appRoot('resources/views/emails'), {
+        name: 'prueba',
+        overwrite: true
+      })
+    } */
+    //let files = request.all()
+    //let files = request.file('files')
+    console.log('val', files, 'val');
+    data = JSON.parse(data.data)
     console.log('probando');
     await Mail.raw('emails.welcome', (message) => {
       message
@@ -67,10 +80,11 @@ class MailController {
         .from('josnielfermin@gmail.com')
         .subject(`Email de ${data.name} con estatus: ${data.category}`)
         .text(`${data.description}`)
-        /* .attachData(`${body.files.file[0]}` ,`${body.files.file[0].name}`) */
+        .attach(Helpers.viewsPath('welcome.edge'))
+        /* .attachData(`${files}`, `prueba`) */
     })
     //response.send(true)
-    return 'Registered successfully'
+    return files
   }
 
   /**
