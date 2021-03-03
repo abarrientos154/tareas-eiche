@@ -154,7 +154,7 @@ export default {
       this.$v.$touch()
       if (!this.$v.form.$error && !this.$v.files.$error) {
         var formData = new FormData()
-        formData.append('files', this.files[0])
+        formData.append('files', this.files)
         formData.append('data', JSON.stringify(this.form))
         console.log(formData, this.files)
         this.$api.post('send', formData, {
