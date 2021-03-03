@@ -1,20 +1,19 @@
 <template>
-    <q-layout>
-    <div class="animation-wrapper">
-        <div class="inner-animation-wrapper">
-        <img src="~assets/logo_hacemos_tus_tareas_nueva_posicion.png" class="logo">
+    <div>
+      <div class="window-height ">
+        <div class="fullscreen column justify-center items-center">
+          <div class="row absolute-center" style="width: 100%">
+              <img src="~assets/logo_hacemos_tus_tareas_nueva_posicion.png" style="width:100%">
+          </div>
+          <div class="row absolute-bottom justify-center">
+              <div class="text-black text-subtitle2">Un proyecto desarrollado por</div>
+              <div class="text-black q-ml-sm text-bold text-subtitle2" @click="ruta()">EICHE.</div>
+          </div>
         </div>
+      </div>
     </div>
-    <div class="row absolute-bottom justify-center q-py-sm">
-        <div class="row">
-          <div class="text-black text-subtitle2">Un proyecto desarrollado por</div>
-          <div class="text-black q-ml-sm text-bold text-subtitle2" @click="ruta()">EICHE.</div>
-        </div>
-    </div>
-    </q-layout>
 </template>
 <script>
-import { QLayout } from 'quasar'
 export default {
   data () {
     return {
@@ -22,9 +21,6 @@ export default {
     }
   },
   name: 'Splash',
-  components: {
-    QLayout
-  },
   methods: {
     ruta () {
       location.href = 'https://www.eichechile.com'
@@ -38,29 +34,12 @@ export default {
   },
   created () {
     console.log('corriendo2')
-    this.timer = setInterval(this.test, 4000)
+    this.timer = setInterval(this.test, 5000)
   },
   cancelAutoUpdate () { clearInterval(this.timer) }
 }
 </script>
 
-<style lang="css">
-    .logo {
-        width: 300px;
-        height: 180px;
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        margin-left: -150px;
-    }
-    .animation-wrapper {
-        height: 100vh;
-        background-color: #f0f0f0;
-    }
-    .inner-animation-wrapper {
-        width: 100%;
-        height: 100vh;
-        display: flex;
-    }
+<style>
 
 </style>

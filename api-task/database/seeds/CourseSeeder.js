@@ -15,32 +15,32 @@ const Factory = use('Factory')
 const Course = use("App/Models/Course")
 const courseData = [
   {
-    name: 'Analisis y Diseño de Sistemas II',
-    icon: 'manage_search'
+    name: 'Español',
+    src: 'español.png'
   },
   {
-    name: 'Estadística Probabilística',
-    icon: 'analytics'
+    name: 'Fisica',
+    src: 'fisica.png'
   },
   {
-    name: 'Lenguaje de Programación III',
-    icon: 'code'
+    name: 'Geografia',
+    src: 'geografia.png'
   },
   {
-    name: 'Modelo de Datos',
-    icon: 'table_chart'
+    name: 'Informatica',
+    src: 'informatica.png'
   },
   {
-    name: 'Sistemas Operativos',
-    icon: 'settings_suggest'
+    name: 'Ingles',
+    src: 'ingles.png'
   },
   {
-    name: 'Teleprocesos',
-    icon: 'account_tree'
+    name: 'Matematicas',
+    src: 'matematica.png'
   },
   {
-    name: 'Tópicos de la Informática II',
-    icon: 'computer'
+    name: 'Quimica',
+    src: 'quimica.png'
   },
 ]
 class CourseSeeder {
