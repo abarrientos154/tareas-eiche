@@ -82,7 +82,7 @@ class MailController {
       message
         .to(`${data.email}` /* 'josnieldavidfb18@gmail.com' */)
         .from('josnielfermin@gmail.com')
-        .subject(`Asignación para ${data.name} ${data.last_name} de categoria: ${data.category}. Para la materia de: ${data.course}`)
+        .subject(`Asignación para ${data.name} ${data.last_name}. Para la materia de: ${data.course}`)
         .text(`${data.description}`)
         //.attach(filePath)
     })
