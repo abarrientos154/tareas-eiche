@@ -24,6 +24,8 @@
                 <q-img
                   :src="course.src"
                   style="width: 100px"
+                  @click="activar(index)"
+                  :class="course.active? 'estilo-activo': 'estilo-inactivo'"
                 />
               </div>
             </div>
@@ -77,6 +79,8 @@
 
 <script>
 import Splash from '../components/Splash.vue'
+/* import { Notify } from 'quasar'
+import { Loading } from 'quasar' */
 import { required, email } from 'vuelidate/lib/validators'
 export default {
   name: 'MainLayout',
@@ -91,16 +95,18 @@ export default {
       text: '',
       model: '',
       form: {},
-      files: []
+      files: [],
+      filesMaxSize: null
     }
   },
   validations () {
     return {
       form: {
         name: { required },
-        email: { required, email },
         last_name: { required },
-        description: { required }
+        email: { required, email },
+        description: { required },
+        course: { required }
       },
       files: { required }
     }
@@ -118,7 +124,6 @@ export default {
       await this.$api.get('courses').then(res => {
         this.courses = res.data
       })
-      console.log(this.courses)
     },
     getOptions () {
       for (var i in this.courses) {
@@ -131,9 +136,23 @@ export default {
         console.log(res)
       })
     },
+    clear () {
+      this.form = {}
+    },
+    activar (ind) {
+      console.log(ind)
+      const actual = this.courses.findIndex(v => v.active === true)
+      console.log(actual)
+      if (actual !== -1) {
+        this.courses[actual].active = false
+      }
+      this.courses[ind].active = true
+      this.form.course = this.courses[ind].name
+    },
     onSubmit () {
+      this.$q.loading.show()
       this.$v.$touch()
-      if (!this.$v.form.$error && !this.$v.file.$error) {
+      if (!this.$v.form.$error && !this.$v.files.$error) {
         var formData = new FormData()
         formData.append('files', this.files[0])
         formData.append('data', JSON.stringify(this.form))
@@ -144,9 +163,28 @@ export default {
           }
         }).then((res) => {
           console.log(res)
+          if (res) {
+            this.$q.notify({
+              message: 'Mensaje enviado correctamente',
+              color: 'positive'
+            })
+            this.$q.loading.hide()
+            // location.reload()
+            this.clear()
+          }
+          this.$q.loading.hide()
         })
       }
     }
   }
 }
 </script>
+
+<style lang="css">
+  .estilo-activo {
+    background-color: #f0f0f0;
+  }
+  .estilo-inactivo {
+    background-color: white;
+  }
+</style>

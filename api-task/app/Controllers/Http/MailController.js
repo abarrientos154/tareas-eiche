@@ -75,17 +75,16 @@ class MailController {
     //let files = request.file('files')
     console.log('val', files, 'val');
     data = JSON.parse(data.data)
-    const filePath = `${path.resolve(`./tmp/uploads/`)}/${files.clientName}`
-    await files.move(Helpers.tmpPath('uploads'), { name: files.clientNam, overwrite: true })
+    /* const filePath = `${path.resolve(`./tmp/uploads/`)}/${files.clientName}`
+    await files.move(Helpers.tmpPath('uploads'), { name: files.clientName, overwrite: true }) */
     console.log('probando');
     await Mail.raw('emails.welcome', (message) => {
       message
-        .to(`${data.email}`)
+        .to(`${data.email}` /* 'josnieldavidfb18@gmail.com' */)
         .from('josnielfermin@gmail.com')
-        .subject(`Email de ${data.name} con estatus: ${data.category}`)
+        .subject(`Asignación para ${data.name} ${data.last_name} de categoria: ${data.category}. Para la materia de: ${data.course}`)
         .text(`${data.description}`)
-        .attach(filePath)
-        /* .attachData(`${files}`, `prueba`) */
+        //.attach(filePath)
     })
     //response.send(true)
     return files

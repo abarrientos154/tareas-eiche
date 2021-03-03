@@ -16,36 +16,43 @@ const Course = use("App/Models/Course")
 const courseData = [
   {
     name: 'Español',
-    src: 'español.png'
+    src: 'español.png',
+    active: false
   },
   {
     name: 'Fisica',
-    src: 'fisica.png'
+    src: 'fisica.png',
+    active: false
   },
   {
     name: 'Geografia',
-    src: 'geografia.png'
+    src: 'geografia.png',
+    active: false
   },
   {
     name: 'Informatica',
-    src: 'informatica.png'
+    src: 'informatica.png',
+    active: false
   },
   {
     name: 'Ingles',
-    src: 'ingles.png'
+    src: 'ingles.png',
+    active: false
   },
   {
     name: 'Matematicas',
-    src: 'matematica.png'
+    src: 'matematica.png',
+    active: false
   },
   {
     name: 'Quimica',
-    src: 'quimica.png'
+    src: 'quimica.png',
+    active: false
   },
 ]
 class CourseSeeder {
   async run () {
-    // await Course.query().delete()
+    //await Course.query().delete()
     for (let i in courseData) {
       let course = await Course.findBy('name', courseData[i].name)
       if (!course) {
@@ -57,7 +64,7 @@ class CourseSeeder {
       }
     }
     console.log('Finished Course')
-  }
+  } 
 }
 
 module.exports = CourseSeeder
