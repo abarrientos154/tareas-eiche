@@ -75,16 +75,16 @@ class MailController {
     //let files = request.file('files')
     console.log('val', files, 'val');
     data = JSON.parse(data.data)
-    /* const filePath = `${path.resolve(`./tmp/uploads/`)}/${files.clientName}`
-    await files.move(Helpers.tmpPath('uploads'), { name: files.clientName, overwrite: true }) */
+    const filePath = `${path.resolve(`./tmp/uploads/`)}/${files.clientName}`
+    await files.move(Helpers.tmpPath('uploads'), { name: files.clientName, overwrite: true })
     console.log('probando');
     await Mail.raw('emails.welcome', (message) => {
       message
-        .to(`${data.email}` /* 'josnieldavidfb18@gmail.com' */)
-        .from('josnielfermin@gmail.com')
-        .subject(`Asignación para ${data.name} ${data.last_name}. Para la materia de: ${data.course}`)
-        .text(`${data.description}`)
-        //.attach(filePath)
+        .to(`abarrientos.wx@gmail.com` /* 'josnieldavidfb18@gmail.com' */)
+        .from(`${data.email}`)
+        .subject(`Nueva ${data.panel == 'tarea' ? 'Tarea' : 'Ayudantia'} del usuario ${data.name} ${data.last_name}.`)
+        .text(`Nueva ${data.panel == 'tarea' ? 'Tarea' : 'Ayudantia'} del usuario ${data.name} ${data.last_name}. Para la materia de: ${data.course} ${data.panel == 'tarea' ? '' : 'Para la fecha: ' + data.fecha + ' a las ' + data.hora + ' Horas. ' } ${data.description}`)
+        .attach(filePath)
     })
     //response.send(true)
     return files

@@ -5,19 +5,22 @@
       <q-tab-panel name="Splash">
         <splash @pasar="pasar" />
       </q-tab-panel>
-      <q-tab-panel name="home">
+      <q-tab-panel class="q-pa-none" name="home">
         <q-page class="bg-primary">
-    <div class="absolute-center">
-      <div class="text-h6">¡Bienvenido!</div>
-      <div class="text-subtitle1">Que deseas hacer?</div>
-      <div class="row q-mt-sm">
-       <q-btn label="Tareas" color="positive" icon="task" style="width:200px" @click="panel = 'tarea'" />
-       <q-btn label="Ayudantias" color="amber" icon="help_center" style="width:200px" class="q-mt-sm" @click="panel = 'ayuda'" />
-      </div>
-    </div>
-  </q-page>
+          <div class="absolute-center">
+            <div class="text-h6">¡Bienvenido!</div>
+            <div class="text-subtitle1">Que deseas hacer?</div>
+            <div class="row q-mt-sm">
+            <q-btn label="Tareas" color="positive" icon="task" style="width:200px" @click="panel = 'tarea'" />
+            <q-btn label="Ayudantias" color="amber" icon="help_center" style="width:200px" class="q-mt-sm" @click="panel = 'ayuda'" />
+            </div>
+          </div>
+        </q-page>
       </q-tab-panel>
       <q-tab-panel name="ayuda">
+        <div class="absolute">
+          <q-btn flat round class="q-ma-xs" icon="keyboard_backspace" color="black" @click="panel = 'home'" />
+        </div>
         <div class="column q-my-xl items-center">
           <img
             alt="Quasar logo"
@@ -113,6 +116,9 @@
 
       </q-tab-panel>
       <q-tab-panel name="tarea">
+        <div class="absolute">
+          <q-btn flat round class="q-ma-xs" icon="keyboard_backspace" color="black" @click="panel = 'home'" />
+        </div>
         <div class="column q-my-xl items-center">
           <img
             alt="Quasar logo"
@@ -292,6 +298,7 @@ export default {
       console.log(this.$v.form.$error, !this.$v.form.$error)
       if (!this.$v.form.$error && !this.$v.files.$error) {
         this.$q.loading.show()
+        this.form.panel = this.panel === 'tarea' ? 'tarea' : 'ayuda'
         var formData = new FormData()
         formData.append('files', this.files)
         formData.append('data', JSON.stringify(this.form))
@@ -304,7 +311,7 @@ export default {
           console.log(res)
           if (res) {
             this.$q.notify({
-              message: 'Mensaje enviado correctamente',
+              message: 'Enviado correctamente',
               color: 'positive'
             })
             this.$q.loading.hide()
@@ -321,7 +328,7 @@ export default {
 
 <style lang="css">
   .estilo-activo {
-    background-color: #f0f0f0;
+    background-color: #463c3c;
   }
   .estilo-inactivo {
     background-color: white;
