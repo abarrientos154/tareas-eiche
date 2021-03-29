@@ -200,7 +200,43 @@ export default {
     return {
       color: true,
       panel: 'Splash',
-      courses: [],
+      courses: [
+        {
+          name: 'Español',
+          src: 'español.png',
+          active: false
+        },
+        {
+          name: 'Fisica',
+          src: 'fisica.png',
+          active: false
+        },
+        {
+          name: 'Geografia',
+          src: 'geografia.png',
+          active: false
+        },
+        {
+          name: 'Informatica',
+          src: 'informatica.png',
+          active: false
+        },
+        {
+          name: 'Ingles',
+          src: 'ingles.png',
+          active: false
+        },
+        {
+          name: 'Matematicas',
+          src: 'matematica.png',
+          active: false
+        },
+        {
+          name: 'Quimica',
+          src: 'quimica.png',
+          active: false
+        }
+      ],
       slide: 'manage_search',
       options: [],
       text: '',
@@ -243,7 +279,7 @@ export default {
     }
   },
   mounted () {
-    this.getCourses()
+    // this.getCourses()
     this.getOptions()
     this.postMail()
   },
