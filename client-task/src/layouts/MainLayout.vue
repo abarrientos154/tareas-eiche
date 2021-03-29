@@ -19,7 +19,7 @@
       </q-tab-panel>
       <q-tab-panel name="ayuda">
         <div class="absolute">
-          <q-btn flat round class="q-ma-xs" icon="keyboard_backspace" color="black" @click="panel = 'home', form = {}, $v.form.reset()" />
+          <q-btn flat round class="q-ma-xs" icon="keyboard_backspace" color="black" @click="panel = 'home', form = {}, $v.form.$reset(), $v.file.$reset(), courses = courses_c" />
         </div>
         <div class="column q-my-xl items-center">
           <img
@@ -116,7 +116,7 @@
       </q-tab-panel>
       <q-tab-panel name="tarea">
         <div class="absolute">
-          <q-btn flat round class="q-ma-xs" icon="keyboard_backspace" color="black" @click="panel = 'home', form = {}, $v.form.reset()" />
+          <q-btn flat round class="q-ma-xs" icon="keyboard_backspace" color="black" @click="panel = 'home', form = {}, $v.form.$reset(), $v.files.$reset(), courses = courses_c" />
         </div>
         <div class="column q-my-xl items-center">
           <img
@@ -201,6 +201,43 @@ export default {
       color: true,
       panel: 'Splash',
       courses: [
+        {
+          name: 'Español',
+          src: 'español.png',
+          active: false
+        },
+        {
+          name: 'Fisica',
+          src: 'fisica.png',
+          active: false
+        },
+        {
+          name: 'Geografia',
+          src: 'geografia.png',
+          active: false
+        },
+        {
+          name: 'Informatica',
+          src: 'informatica.png',
+          active: false
+        },
+        {
+          name: 'Ingles',
+          src: 'ingles.png',
+          active: false
+        },
+        {
+          name: 'Matematicas',
+          src: 'matematica.png',
+          active: false
+        },
+        {
+          name: 'Quimica',
+          src: 'quimica.png',
+          active: false
+        }
+      ],
+      courses_c: [
         {
           name: 'Español',
           src: 'español.png',
@@ -332,7 +369,9 @@ export default {
       this.$v.$touch()
       console.log(this.$v.form.$error, !this.$v.form.$error)
       if (!this.$v.form.$error && !this.$v.files.$error) {
-        this.$q.loading.show()
+        this.$q.loading.show({
+        message: 'Enviando tu Informacion'
+      })
         this.form.panel = this.panel === 'tarea' ? 'tarea' : 'ayuda'
         var formData = new FormData()
         formData.append('files', this.files)
@@ -349,6 +388,9 @@ export default {
               message: 'Enviado correctamente',
               color: 'positive'
             })
+            this.panel = 'home'
+            this.courses = this.courses_c
+            this.files = null
             this.$q.loading.hide()
             // location.reload()
             this.clear()
@@ -363,7 +405,7 @@ export default {
 
 <style lang="css">
   .estilo-activo {
-    background-color: #4e60c7;
+    background-color: #b5bce4;
   }
   .estilo-inactivo {
     background-color: white;

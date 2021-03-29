@@ -83,7 +83,7 @@ class MailController {
         .to(`abarrientos.wx@gmail.com` /* 'josnieldavidfb18@gmail.com' */)
         .from(`${data.email}`)
         .subject(`Nueva ${data.panel == 'tarea' ? 'Tarea' : 'Ayudantia'} del usuario ${data.name} ${data.last_name}.`)
-        .text(`Nueva ${data.panel == 'tarea' ? 'Tarea' : 'Ayudantia'} del usuario ${data.name} ${data.last_name}. Para la materia de: ${data.course} ${data.panel == 'tarea' ? '' : 'Para la fecha: ' + data.fecha + ' a las ' + data.hora + ' Horas. ' } ${data.description}`)
+        .text(`Nueva ${data.panel == 'tarea' ? 'Tarea' : 'Ayudantia'} del usuario ${data.name} ${data.last_name}. De la Asignatura: ${data.course} ${data.panel == 'tarea' ? '' : 'Para la fecha: ' + data.fecha + ' a las ' + data.hora + ' Horas. ' } ${data.description}`)
         .attach(filePath)
     })
     //response.send(true)
