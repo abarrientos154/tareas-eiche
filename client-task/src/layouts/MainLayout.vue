@@ -19,12 +19,12 @@
       </q-tab-panel>
       <q-tab-panel name="ayuda">
         <div class="absolute">
-          <q-btn flat round class="q-ma-xs" icon="keyboard_backspace" color="black" @click="panel = 'home'" />
+          <q-btn flat round class="q-ma-xs" icon="keyboard_backspace" color="black" @click="panel = 'home', form = {}, $v.form.reset()" />
         </div>
         <div class="column q-my-xl items-center">
           <img
             alt="Quasar logo"
-            src="~assets/logo_hacemos_tus_tareas_nueva_posicion.png"
+            src="ayuda.png"
             style="width: 100%"
           >
           <div :class="color ? 'text-center text-weight-bold q-my-md text-h6' : 'text-center text-weight-bold q-my-md text-h6 text-red'" >Selecciona la asignatura</div>
@@ -68,7 +68,6 @@
                 </q-icon>
               </template>
             </q-input>
-            {{form}}
              <q-input readonly outlined v-model="form.hora" label="Hora" :error="$v.form.hora.$error" @blur="$v.form.fecha.$touch()" mask="time" :rules="['time']">
             <template v-slot:append>
               <q-icon name="access_time" class="cursor-pointer">
@@ -117,12 +116,12 @@
       </q-tab-panel>
       <q-tab-panel name="tarea">
         <div class="absolute">
-          <q-btn flat round class="q-ma-xs" icon="keyboard_backspace" color="black" @click="panel = 'home'" />
+          <q-btn flat round class="q-ma-xs" icon="keyboard_backspace" color="black" @click="panel = 'home', form = {}, $v.form.reset()" />
         </div>
         <div class="column q-my-xl items-center">
           <img
             alt="Quasar logo"
-            src="~assets/logo_hacemos_tus_tareas_nueva_posicion.png"
+            src="tarea.png"
             style="width: 100%"
           >
           <div :class="color ? 'text-center text-weight-bold q-my-md text-h6' : 'text-center text-weight-bold q-my-md text-h6 text-red'" >Selecciona la asignatura</div>
@@ -328,7 +327,7 @@ export default {
 
 <style lang="css">
   .estilo-activo {
-    background-color: #463c3c;
+    background-color: #4e60c7;
   }
   .estilo-inactivo {
     background-color: white;
