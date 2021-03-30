@@ -370,8 +370,8 @@ export default {
       console.log(this.$v.form.$error, !this.$v.form.$error)
       if (!this.$v.form.$error && !this.$v.files.$error) {
         this.$q.loading.show({
-        message: 'Enviando tu Informacion'
-      })
+          message: 'Enviando tu Informacion'
+        })
         this.form.panel = this.panel === 'tarea' ? 'tarea' : 'ayuda'
         var formData = new FormData()
         formData.append('files', this.files)
