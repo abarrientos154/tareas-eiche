@@ -6,7 +6,57 @@
         <splash @pasar="pasar" />
       </q-tab-panel>
       <q-tab-panel class="q-pa-none" name="home">
-        <q-page class="bg-primary">
+        <div>
+  <q-carousel
+      v-model="slide"
+      transition-prev="scale"
+      transition-next="scale"
+      swipeable
+      animated
+      control-color="primary"
+      navigation
+      padding
+      ref="carousel"
+      height="700px"
+      class="bg-white fullscreen column justify-center items-center text-white rounded-borders"
+      >
+    <q-carousel-slide @click="panel = 'ayuda'" name="parte1" class="column no-wrap flex-center">
+      <q-img class="parte1" style="height: 500px; width: 300px">
+      </q-img>
+      <div class="text-center text-grey-8">
+        {{ lorem }}
+      </div>
+    </q-carousel-slide>
+    <q-carousel-slide @click="panel = 'tarea'" name="parte2"  class="column no-wrap flex-center">
+    <q-img class="parte2" style="height: 500px; width: 300px">
+      </q-img>
+      <div class="text-center text-grey-8">
+        {{ lorem3 }}
+      </div>
+      </q-carousel-slide>
+        <template v-slot:control>
+        <q-carousel-control
+          position="bottom-right"
+          :offset="[15, 300]"
+          class="q-gutter-xs">
+          <q-btn
+            push flat text-color="primary" icon="keyboard_arrow_right"
+            @click="ruta()"
+          />
+        </q-carousel-control>
+          <q-carousel-control
+          position="bottom-left"
+          :offset="[15, 300]"
+          class="q-gutter-xs">
+          <q-btn
+            push flat text-color="primary" icon="keyboard_arrow_left"
+            @click="$refs.carousel.previous()"
+          />
+        </q-carousel-control>
+        </template>
+  </q-carousel>
+</div>
+       <!--  <q-page class="bg-primary">
           <div class="absolute-center">
             <div class="text-h6">¡Bienvenido!</div>
             <div class="text-subtitle1">Que deseas hacer?</div>
@@ -15,7 +65,7 @@
             <q-btn label="Ayudantias" color="amber" icon="help_center" style="width:200px" class="q-mt-sm" @click="panel = 'ayuda'" />
             </div>
           </div>
-        </q-page>
+        </q-page> -->
       </q-tab-panel>
       <q-tab-panel name="ayuda">
         <div class="absolute">
@@ -198,6 +248,12 @@ export default {
   components: { Splash },
   data () {
     return {
+      slide: 'parte1',
+      lorem: '¡Descubre diferentes lugares, playas, hoteles y principales zonas turísticas en Mejillones para planificar de manera más organizada y divertida tu viaje! Consigue ofertas exclusivas, gestiona tus reservas y revisa la opinión de otros viajeros.',
+      lorem2: '¿Qué contiene la app? ',
+      lorem3: 'La aplicación registra los mejores destinos turísticos en Mejillones, diferentes opciones de hospedaje, servicios de transporte y actividades de entretenimiento. Guarda tus preferencias y consúltalas cuando desees, recibe alertas especiales y halla los mejores restaurantes que otros viajeros recomiendan.',
+      lorem4: '¿Qué puede hacer dentro de la app? ',
+      lorem5: 'Encuentra información específica sobre cada uno de los sitios que anheles visitar, como horarios, precios, ubicación o descripciones. Deja tu comentario, o lee el de otros usuarios, para hablar de tu experiencia. ¡Todo al alcance de tu mano!',
       color: true,
       panel: 'Splash',
       courses: [
@@ -274,7 +330,6 @@ export default {
           active: false
         }
       ],
-      slide: 'manage_search',
       options: [],
       text: '',
       model: '',
@@ -321,6 +376,14 @@ export default {
     this.postMail()
   },
   methods: {
+    ruta () {
+      if (this.slide === 'parte2') {
+        // Sthis.estaLogueado()
+        this.$refs.carousel.previous()
+      } else {
+        this.$refs.carousel.next()
+      }
+    },
     optionsFn2 (datee) {
       var dd = moment().format('YYYY/MM/DD')
       // console.log(dd, this.form.fechaInicioContrato)
@@ -410,4 +473,19 @@ export default {
   .estilo-inactivo {
     background-color: white;
   }
+</style>
+<style>
+.clearfix {
+  overflow: auto;
+}
+</style>
+<style>
+.parte1 {
+  background-image: url('../../public/ayuda.png');
+  background-size: 100% 100%;
+}
+.parte2 {
+  background-image: url('../../public/tarea.png');
+  background-size: 100% 100%;
+}
 </style>
