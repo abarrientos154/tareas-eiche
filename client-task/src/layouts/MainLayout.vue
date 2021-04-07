@@ -24,14 +24,14 @@
       <q-img class="parte1" style="height: 500px; width: 300px">
       </q-img>
       <div class="text-center text-grey-8">
-        {{ lorem }}
+         <q-btn color="primary" glossy label="Reserva tu Hora" />
       </div>
     </q-carousel-slide>
     <q-carousel-slide @click="panel = 'tarea'" name="parte2"  class="column no-wrap flex-center">
     <q-img class="parte2" style="height: 500px; width: 300px">
       </q-img>
       <div class="text-center text-grey-8">
-        {{ lorem3 }}
+        <q-btn color="primary" glossy label="Hacer tu Tarea" />
       </div>
       </q-carousel-slide>
         <template v-slot:control>
