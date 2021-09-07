@@ -371,9 +371,9 @@ export default {
     }
   },
   mounted () {
-    // this.getCourses()
+    this.getCourses()
     this.getOptions()
-    this.postMail()
+    // this.postMail()
   },
   methods: {
     ruta () {
@@ -400,7 +400,7 @@ export default {
     },
     async getCourses () {
       await this.$api.get('courses').then(res => {
-        this.courses = res.data
+        console.log(res)
       })
     },
     getOptions () {

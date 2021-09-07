@@ -20,7 +20,7 @@ class CourseController {
    * @param {View} ctx.view
    */
   async index ({ request, response, view }) {
-    let courses = (await Course.all()).toJSON()
+    let courses = [0,1,2,3]
     console.log(courses)
     response.send(courses)
   }
