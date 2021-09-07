@@ -75,12 +75,12 @@ class MailController {
     //let files = request.file('files')
     //console.log('val', files, 'val');
     data = JSON.parse(data.data)
-    try {
+    /* try {
       const filePath = `${path.resolve(`./tmp/uploads/`)}/${files.clientName}`
       await files.move(Helpers.tmpPath('uploads'), { name: files.clientName, overwrite: true })
     } catch (err) {
       console.log(err, 'archivo')
-    }
+    } */
     console.log('probando');
     try {
       await Mail.raw('emails.welcome', (message) => {
