@@ -459,6 +459,9 @@ export default {
             this.clear()
           }
           this.$q.loading.hide()
+        }).catch(erro => {
+          console.log(erro)
+          this.$q.loading.hide()
         })
       }
     }
