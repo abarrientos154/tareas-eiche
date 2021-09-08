@@ -23,7 +23,7 @@ module.exports = {
   | Sqlite
   |--------------------------------------------------------------------------
   |
-  | Sqlite is a flat file database and can be good choice under development
+  | Sqlite is a flat file database and can be a good choice for a development
   | environment.
   |
   | npm i --save sqlite3
@@ -34,7 +34,8 @@ module.exports = {
     connection: {
       filename: Helpers.databasePath(`${Env.get('DB_DATABASE', 'development')}.sqlite`)
     },
-    useNullAsDefault: true
+    useNullAsDefault: true,
+    debug: Env.get('DB_DEBUG', false)
   },
 
   /*
@@ -55,7 +56,8 @@ module.exports = {
       user: Env.get('DB_USER', 'root'),
       password: Env.get('DB_PASSWORD', ''),
       database: Env.get('DB_DATABASE', 'adonis')
-    }
+    },
+    debug: Env.get('DB_DEBUG', false)
   },
 
   /*
@@ -76,19 +78,20 @@ module.exports = {
       user: Env.get('DB_USER', 'root'),
       password: Env.get('DB_PASSWORD', ''),
       database: Env.get('DB_DATABASE', 'adonis')
-    }
+    },
+    debug: Env.get('DB_DEBUG', false)
   },
   mongodb: {
-    client: "mongodb",
-    connectionString: Env.get("DB_CONNECTION_STRING", ""),
+    client: 'mongodb',
+    connectionString: Env.get('DB_CONNECTION_STRING', ''),
     connection: {
-      host: Env.get("DB_HOST", "localhost"),
-      port: Env.get("DB_PORT", 27017),
-      username: Env.get("DB_USER", "admin"),
-      password: Env.get("DB_PASSWORD", ""),
-      database: Env.get("DB_DATABASE", "adonis"),
+      host: Env.get('DB_HOST', 'localhost'),
+      port: Env.get('DB_PORT', 27017),
+      username: Env.get('DB_USER', 'admin'),
+      password: Env.get('DB_PASSWORD', ''),
+      database: Env.get('DB_DATABASE', 'adonis'),
       options: {
-        useUnifiedTopology: true,
+        useUnifiedTopology: true
         // replicaSet: Env.get('DB_REPLICA_SET', '')
         // ssl: Env.get('DB_SSL, '')
         // connectTimeoutMS: Env.get('DB_CONNECT_TIMEOUT_MS', 15000),
@@ -98,7 +101,7 @@ module.exports = {
         // authSource: Env.get('DB_AUTH_SOURCE', ''),
         // authMechanism: Env.get('DB_AUTH_MECHANISM', ''),
         // other options
-      },
-    },
-  },
+      }
+    }
+  }
 }
