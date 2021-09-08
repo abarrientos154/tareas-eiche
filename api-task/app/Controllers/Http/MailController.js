@@ -4,8 +4,8 @@ const { validate } = use("Validator")
 const Mail = use('Mail')
 const Helpers = use('Helpers')
 const path = require('path')
-/* const mkdirp = use('mkdirp')
-const fs = require('fs') */
+const mkdirp = use('mkdirp')
+const fs = require('fs')
 
 /* const formMailV = {
   name: "required|string",
@@ -72,15 +72,15 @@ class MailController {
       })
     } */
     //let files = request.all()
-    //let files = request.file('files')
+    // let files = request.file('files')
     //console.log('val', files, 'val');
     data = JSON.parse(data.data)
-    /* try {
-      const filePath = `${path.resolve(`./tmp/uploads/`)}/${files.clientName}`
+    try {
+      var filePath = `${path.resolve(`./tmp/uploads/`)}/${files.clientName}`
       await files.move(Helpers.tmpPath('uploads'), { name: files.clientName, overwrite: true })
     } catch (err) {
       console.log(err, 'archivo')
-    } */
+    }
     console.log('probando');
     try {
       await Mail.raw('emails.welcome', (message) => {
@@ -89,10 +89,10 @@ class MailController {
         .from(`${data.email}`)
         .subject(`Nueva ${data.panel == 'tarea' ? 'Tarea' : 'Ayudantia'} del usuario ${data.name} ${data.last_name}.`)
         .text(`Nueva ${data.panel == 'tarea' ? 'Tarea' : 'Ayudantia'} del usuario ${data.name} ${data.last_name}. De la Asignatura: ${data.course} ${data.panel == 'tarea' ? '' : 'Para la fecha: ' + data.fecha + ' a las ' + data.hora + ' Horas. ' } ${data.description}`)
-        // .attach(filePath)
+        .attach(filePath)
       })
     } catch (err) {
-      console.log(err)
+      console.log('error1:'+err)
     }
     
     //response.send(true)
