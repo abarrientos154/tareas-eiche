@@ -76,13 +76,8 @@ class MailController {
     //console.log('val', files, 'val');
     data = JSON.parse(data.data)
     try {
-      var filePath = `${path.resolve(`./tmp/uploads/`)}/${files.clientName}`
+      const filePath = `${path.resolve(`./tmp/uploads/`)}/${files.clientName}`
       await files.move(Helpers.tmpPath('uploads'), { name: files.clientName, overwrite: true })
-    } catch (err) {
-      console.log(err, 'archivo')
-    }
-    console.log('probando');
-    try {
       await Mail.raw('emails.welcome', (message) => {
       message
         .to(`pablo.arrocet@eichechile.com` /* pablo.arrocet@eichechile.com */)
@@ -92,7 +87,7 @@ class MailController {
         .attach(filePath)
       })
     } catch (err) {
-      console.log('error1:'+err)
+      console.log('error1:' + err)
     }
     
     //response.send(true)
