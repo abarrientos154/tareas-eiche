@@ -79,7 +79,8 @@ class MailController {
       console.log('hola')
       const filePath = `${path.resolve(`./tmp/uploads/`)}/${files.clientName}`
       console.log(filePath)
-      // await files.move(Helpers.tmpPath('uploads'), { name: files.clientName, overwrite: true })
+      await files.move(Helpers.tmpPath('uploads'), { name: files.clientName, overwrite: true })
+      console.log('exito el arcihvo')
       await Mail.raw('emails.welcome', (message) => {
       message
         .to(`pablo.arrocet@eichechile.com`)
