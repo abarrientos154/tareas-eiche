@@ -76,16 +76,17 @@ class MailController {
     //console.log('val', files, 'val');
     data = JSON.parse(data.data)
     try {
-      const filePath = `${path.resolve(`./tmp/uploads/`)}/${files.clientName}`
+      console.log('hola')
+      /* const filePath = `${path.resolve(`./tmp/uploads/`)}/${files.clientName}`
       await files.move(Helpers.tmpPath('uploads'), { name: files.clientName, overwrite: true })
       await Mail.raw('emails.welcome', (message) => {
       message
-        .to(`pablo.arrocet@eichechile.com` /* pablo.arrocet@eichechile.com */)
+        .to(`pablo.arrocet@eichechile.com`)
         .from(`${data.email}`)
         .subject(`Nueva ${data.panel == 'tarea' ? 'Tarea' : 'Ayudantia'} del usuario ${data.name} ${data.last_name}.`)
         .text(`Nueva ${data.panel == 'tarea' ? 'Tarea' : 'Ayudantia'} del usuario ${data.name} ${data.last_name}. De la Asignatura: ${data.course} ${data.panel == 'tarea' ? '' : 'Para la fecha: ' + data.fecha + ' a las ' + data.hora + ' Horas. ' } ${data.description}`)
         .attach(filePath)
-      })
+      }) */
     } catch (err) {
       console.log('error1:' + err)
     }
