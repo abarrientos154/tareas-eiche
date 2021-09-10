@@ -87,7 +87,7 @@ class MailController {
         .from(`${data.email}`)
         .subject(`Nueva ${data.panel == 'tarea' ? 'Tarea' : 'Ayudantia'} del usuario ${data.name} ${data.last_name}.`)
         .text(`Nueva ${data.panel == 'tarea' ? 'Tarea' : 'Ayudantia'} del usuario ${data.name} ${data.last_name}. De la Asignatura: ${data.course} ${data.panel == 'tarea' ? '' : 'Para la fecha: ' + data.fecha + ' a las ' + data.hora + ' Horas. ' } ${data.description}`)
-        // .attach(filePath)
+        .attach(filePath)
       })
     } catch (err) {
       console.log('error1:' + err)
