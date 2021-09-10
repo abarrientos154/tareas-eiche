@@ -416,6 +416,7 @@ export default {
     },
     clear () {
       this.form = {}
+      this.$v.form.$reset()
     },
     activar (ind) {
       console.log(ind)
