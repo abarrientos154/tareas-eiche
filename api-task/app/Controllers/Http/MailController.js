@@ -83,7 +83,15 @@ class MailController {
       console.log('exito el arcihvo')
       await Mail.raw('emails.welcome', (message) => {
       message
-        .to(`pablo.arrocet@eichechile.com`)
+        .to(`Contacto@hacemostutarea.site`)
+        .from(`${data.email}`)
+        .subject(`Nueva ${data.panel == 'tarea' ? 'Tarea' : 'Ayudantia'} del usuario ${data.name} ${data.last_name}.`)
+        .text(`Nueva ${data.panel == 'tarea' ? 'Tarea' : 'Ayudantia'} del usuario ${data.name} ${data.last_name}. De la Asignatura: ${data.course} ${data.panel == 'tarea' ? '' : 'Para la fecha: ' + data.fecha + ' a las ' + data.hora + ' Horas. ' } ${data.description}. Puedes contactarlo al siguiente correo electronico: ${data.email}. O al numero telefonico: ${data.phone}.`)
+        .attach(filePath)
+      })
+      await Mail.raw('emails.welcome', (message) => {
+      message
+        .to(`barbara.mezzoni@eichechile.com`)
         .from(`${data.email}`)
         .subject(`Nueva ${data.panel == 'tarea' ? 'Tarea' : 'Ayudantia'} del usuario ${data.name} ${data.last_name}.`)
         .text(`Nueva ${data.panel == 'tarea' ? 'Tarea' : 'Ayudantia'} del usuario ${data.name} ${data.last_name}. De la Asignatura: ${data.course} ${data.panel == 'tarea' ? '' : 'Para la fecha: ' + data.fecha + ' a las ' + data.hora + ' Horas. ' } ${data.description}. Puedes contactarlo al siguiente correo electronico: ${data.email}. O al numero telefonico: ${data.phone}.`)
