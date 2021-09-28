@@ -7,55 +7,55 @@
       </q-tab-panel>
       <q-tab-panel class="q-pa-none" name="home">
         <div>
-  <q-carousel
-      v-model="slide"
-      transition-prev="scale"
-      transition-next="scale"
-      swipeable
-      animated
-      control-color="primary"
-      navigation
-      padding
-      ref="carousel"
-      height="700px"
-      class="bg-white fullscreen column justify-center items-center text-white rounded-borders"
-      >
-    <q-carousel-slide @click="panel = 'ayuda'" name="parte1" class="column no-wrap flex-center">
-      <q-img class="parte1" style="height: 500px; width: 300px">
-      </q-img>
-      <div class="text-center text-grey-8">
-         <q-btn color="primary" glossy label="Reserva tu Hora" />
-      </div>
-    </q-carousel-slide>
-    <q-carousel-slide @click="panel = 'tarea'" name="parte2"  class="column no-wrap flex-center">
-    <q-img class="parte2" style="height: 500px; width: 300px">
-      </q-img>
-      <div class="text-center text-grey-8">
-        <q-btn color="primary" glossy label="Hacer tu Tarea" />
-      </div>
-      </q-carousel-slide>
-        <template v-slot:control>
-        <q-carousel-control
-          position="bottom-right"
-          :offset="[15, 300]"
-          class="q-gutter-xs">
-          <q-btn
-            push flat text-color="primary" icon="keyboard_arrow_right"
-            @click="ruta()"
-          />
-        </q-carousel-control>
-          <q-carousel-control
-          position="bottom-left"
-          :offset="[15, 300]"
-          class="q-gutter-xs">
-          <q-btn
-            push flat text-color="primary" icon="keyboard_arrow_left"
-            @click="$refs.carousel.previous()"
-          />
-        </q-carousel-control>
-        </template>
-  </q-carousel>
-</div>
+          <q-carousel
+              v-model="slide"
+              transition-prev="scale"
+              transition-next="scale"
+              swipeable
+              animated
+              control-color="primary"
+              navigation
+              padding
+              ref="carousel"
+              height="700px"
+              class="bg-white fullscreen column justify-center items-center text-white rounded-borders"
+              >
+            <q-carousel-slide @click="panel = 'ayuda'" name="parte1" class="column no-wrap flex-center">
+              <q-img class="parte1" style="height: 500px; width: 300px">
+              </q-img>
+              <div class="text-center text-grey-8">
+                <q-btn color="primary" glossy label="Reserva tu Hora" />
+              </div>
+            </q-carousel-slide>
+            <q-carousel-slide @click="panel = 'tarea'" name="parte2"  class="column no-wrap flex-center">
+            <q-img class="parte2" style="height: 500px; width: 300px">
+              </q-img>
+              <div class="text-center text-grey-8">
+                <q-btn color="primary" glossy label="Hacer tu Tarea" />
+              </div>
+              </q-carousel-slide>
+                <template v-slot:control>
+                <q-carousel-control
+                  position="bottom-right"
+                  :offset="[15, 300]"
+                  class="q-gutter-xs">
+                  <q-btn
+                    push flat text-color="primary" icon="keyboard_arrow_right"
+                    @click="ruta()"
+                  />
+                </q-carousel-control>
+                  <q-carousel-control
+                  position="bottom-left"
+                  :offset="[15, 300]"
+                  class="q-gutter-xs">
+                  <q-btn
+                    push flat text-color="primary" icon="keyboard_arrow_left"
+                    @click="$refs.carousel.previous()"
+                  />
+                </q-carousel-control>
+                </template>
+          </q-carousel>
+        </div>
        <!--  <q-page class="bg-primary">
           <div class="absolute-center">
             <div class="text-h6">¡Bienvenido!</div>
@@ -103,6 +103,7 @@
               <q-input outlined v-model="form.name" label="Nombre*" :error="$v.form.name.$error" error-message="Este campo es requerido" @blur="$v.form.name.$touch()"/>
               <q-input outlined v-model="form.last_name" label="Apellido*" :error="$v.form.last_name.$error" error-message="Este campo es requerido" @blur="$v.form.last_name.$touch()"/>
               <q-input outlined v-model="form.email" type="email" label="Correo*" :error="$v.form.email.$error" error-message="Este campo es requerido" @blur="$v.form.email.$touch()"/>
+              <q-input outlined v-model="form.phone" label="Telefono" :error="$v.form.phone.$error" error-message="Este campo es requerido" @blur="$v.form.phone.$touch()"/>
               <q-input readonly outlined v-model="form.fecha" mask="date" label="Fecha" :rules="['date']" stack-label
               error-message="Este campo es requerido" :error="$v.form.fecha.$error" @blur="$v.form.fecha.$touch()"
               >
@@ -162,7 +163,12 @@
               </div>
             </q-form>
           </div>
-
+        <q-page-sticky position="bottom-right" :offset="[18, 18]">
+          <q-fab color="positive" icon="phone" direction="up" vertical-actions-align="right">
+            <q-fab-action label="Contáctate en México" color="green-10" @click="ir(1)" icon="img:wpw.png" />
+            <q-fab-action label="Contáctate en Chile" color="negative" @click="ir(2)" icon="img:wpw.png" />
+          </q-fab>
+        </q-page-sticky>
       </q-tab-panel>
       <q-tab-panel name="tarea">
         <div class="absolute">
@@ -200,6 +206,7 @@
               <q-input outlined v-model="form.name" label="Nombre" :error="$v.form.name.$error" error-message="Este campo es requerido" @blur="$v.form.name.$touch()"/>
               <q-input outlined v-model="form.last_name" label="Apellido" :error="$v.form.last_name.$error" error-message="Este campo es requerido" @blur="$v.form.last_name.$touch()"/>
               <q-input outlined v-model="form.email" type="email" label="Correo" :error="$v.form.email.$error" error-message="Este campo es requerido" @blur="$v.form.email.$touch()"/>
+              <q-input outlined v-model="form.phone" label="Telefono" :error="$v.form.phone.$error" error-message="Este campo es requerido" @blur="$v.form.phone.$touch()"/>
               <div>
                 <q-file
                   v-model="files"
@@ -230,7 +237,12 @@
               </div>
             </q-form>
           </div>
-
+        <q-page-sticky position="bottom-right" :offset="[18, 18]">
+          <q-fab color="positive" icon="phone" direction="up" vertical-actions-align="right">
+            <q-fab-action label="Contáctate en México" color="green-10" @click="ir(1)" icon="img:wpw.png" />
+            <q-fab-action label="Contáctate en Chile" color="negative" @click="ir(2)" icon="img:wpw.png" />
+          </q-fab>
+        </q-page-sticky>
       </q-tab-panel>
     </q-tab-panels>
   </q-layout>
@@ -239,6 +251,7 @@
 
 <script>
 import Splash from '../components/Splash.vue'
+import { openURL } from 'quasar'
 /* import { Notify } from 'quasar'
 import { Loading } from 'quasar' */
 import { required, email, requiredIf } from 'vuelidate/lib/validators'
@@ -355,6 +368,7 @@ export default {
         last_name: { required },
         email: { required, email },
         description: { required },
+        phone: { required },
         course: { required },
         fecha: {
           required: requiredIf(function (nestedModel) {
@@ -376,6 +390,13 @@ export default {
     // this.postMail()
   },
   methods: {
+    ir (type) {
+      if (type === 1) {
+        openURL('https://wa.me/523329608832')
+      } else {
+        openURL('https://wa.me/56984018152')
+      }
+    },
     ruta () {
       if (this.slide === 'parte2') {
         // Sthis.estaLogueado()
